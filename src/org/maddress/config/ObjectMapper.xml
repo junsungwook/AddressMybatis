@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper    
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"     
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+ <mapper namespace="org.maddress.config.ObjectMapper">
+ 	<!-- insert -->
+ 	<!-- 쿼리문 안에 파라미터의 형태가 조금 다름, #이 1개 -->
+ 	<insert id="mInsertData" parameterType="maddrDTO">
+ 	insert into addressdb
+ 	values(addressdb_seq.nextval,#{name},#{addr},#{zipcode},#{tel})
+ 	</insert>
+ 	
+ 	<!-- list출력 -->
+ 	<select id="mSelectData" resultType="maddrDTO">
+ 	select *
+ 	from addressdb
+ 	</select>
+ 	
+ 	<!-- 검색리스트 출력 -->
+ 	<select id="mSearchData" resultType="maddrDTO" parameterType="HashMap">
+ 	select *
+ 	from addressdb
+ 		<if test='hm.field == "name"'>
+ 			where name like '%${word}%'
+ 		</if>
+ 		<if test='hm.field == "tel"'>
+ 			where tel like '%${word}%'
+ 		</if>
+ 	</select>
+ 	
+ 	<!-- count출력 -->
+ 	<select id="mCountData" resultType="Integer">
+ 	select count(*)
+ 	from addressdb
+ 	</select>
+ 	
+ 	<!-- 상세보기 -->
+ 	<select id="mViewData" resultType="maddrDTO" parameterType="Integer">
+ 	select *
+ 	from addressdb
+ 	where num=#{num}
+ 	</select>
+ 	
+ 	<!-- update -->
+ 	<update id="mUpdateData" parameterType="maddrDTO">
+ 	update addressdb
+ 	set name=#{name}, addr=#{addr}, zipcode=#{zipcode}, tel=#{tel}
+ 	where num=#{num}
+ 	</update>
+ 	
+ 	<!-- 삭제 -->
+ 	<delete id="mDeleteData" parameterType="Integer">
+ 	delete from addressdb
+ 	where num=#{num}
+ 	</delete>
+ </mapper>

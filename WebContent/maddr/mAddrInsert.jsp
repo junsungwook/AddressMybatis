@@ -7,7 +7,7 @@
 <title>여기에 제목을 입력하십시오</title>
 </head>
 <body>
-<form action="insertAction" method="post">
+<form action="insert.my" method="post">
 	<div class="container">
 	   <table>
 	      <tr>
