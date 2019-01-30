@@ -45,9 +45,9 @@ public class SearchController extends HttpServlet {
 		HashMap<String, String> hm = new HashMap<>();
 		hm.put("field", field);
 		hm.put("word", word);
-		JSONArray jarr=null;
+		
 		List<MyAddressDTO> arr = sqlSess.selectList("mSearchData", hm);
-		jarr = new JSONArray();
+		JSONArray jarr = new JSONArray();
 		for(MyAddressDTO z :arr){
 			JSONObject obj = new JSONObject();
 			obj.put("name",z.getName());

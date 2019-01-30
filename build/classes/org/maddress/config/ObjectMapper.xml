@@ -20,12 +20,15 @@
  	<select id="mSearchData" resultType="maddrDTO" parameterType="HashMap">
  	select *
  	from addressdb
- 		<if test='hm.field == "name"'>
- 			where name like '%${word}%'
- 		</if>
- 		<if test='hm.field == "tel"'>
- 			where tel like '%${word}%'
- 		</if>
+ 	<where>
+ 	<if test="word!=null and field=='name'">
+ 		name like '%'||#{word}||'%'
+ 	</if>
+ 	<if test="word!=null and field=='tel'">
+ 		tel like '%'||#{word}||'%'
+ 	</if>
+ 	</where>
+ 		
  	</select>
  	
  	<!-- count출력 -->
