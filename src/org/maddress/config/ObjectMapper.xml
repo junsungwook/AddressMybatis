@@ -3,6 +3,19 @@
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"     
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
  <mapper namespace="org.maddress.config.ObjectMapper">
+ 
+ 
+ <sql id="search">
+ 	<where>
+ 	<if test="word!=null and field=='name'">
+ 		name like '%'||#{word}||'%'
+ 	</if>
+ 	<if test="word!=null and field=='tel'">
+ 		tel like '%'||#{word}||'%'
+ 	</if>
+ 	</where>
+ </sql>
+ 
  	<!-- insert -->
  	<!-- 쿼리문 안에 파라미터의 형태가 조금 다름, #이 1개 -->
  	<insert id="mInsertData" parameterType="maddrDTO">
@@ -20,14 +33,7 @@
  	<select id="mSearchData" resultType="maddrDTO" parameterType="HashMap">
  	select *
  	from addressdb
- 	<where>
- 	<if test="word!=null and field=='name'">
- 		name like '%'||#{word}||'%'
- 	</if>
- 	<if test="word!=null and field=='tel'">
- 		tel like '%'||#{word}||'%'
- 	</if>
- 	</where>
+ 	<include refid="search"/>
  		
  	</select>
  	
