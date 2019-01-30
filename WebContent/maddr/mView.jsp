@@ -9,7 +9,7 @@
 <script>
 	$(document).ready(function(){
 		$("#btnZip").click(function(){
-			window.open("zipAction","","width=700 height=500");
+			window.open("mZipCheck.jsp","","width=700 height=500");
 		});
 	})
 </script>

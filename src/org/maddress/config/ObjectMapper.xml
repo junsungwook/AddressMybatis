@@ -62,4 +62,11 @@
  	delete from addressdb
  	where num=#{num}
  	</delete>
+ 	
+ 	<!-- 우편번호검색 -->
+ 	<select id="mZipData" parameterType="String" resultType="org.maddress.model.ZipcodeDTO">
+ 	select *
+ 	from zipcode
+ 	where dong like '%'||#{dong}||'%'
+ 	</select>
  </mapper>
